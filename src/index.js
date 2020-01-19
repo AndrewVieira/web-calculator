@@ -1,7 +1,10 @@
+/* This code was done by Andrew Vieira */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+/* Where we show the current input or solution given by an operation */
 function Display(props){
 	return <h1 className="display">{props.value}</h1>
 }
@@ -10,6 +13,7 @@ function Button(props) {
 	return <button className={props.name} onClick={props.onClick}>{props.value}</button>
 }
 
+/* Includes all the buttons, display, and operations that a calculator would do in a single entity */
 class Calculator extends React.Component {
 	constructor(props){
 		super(props);
@@ -21,6 +25,7 @@ class Calculator extends React.Component {
 			nextNumberReady : false,
 			isFirstValueSet : false,
 			operator : '+',
+			currentOperation: "",
 		}
 	}
 
@@ -35,9 +40,22 @@ class Calculator extends React.Component {
 		return temp.length;
 	}
 
+	/* Make sure numbers don't get too big with this function */
+	limitDigits(number){
+		let temp = number;
+		if (this.countDigits(temp) > 10){
+			if (temp > 9999999999)
+				temp = temp.toPrecision(6);
+			else
+				temp = temp.toPrecision(10);
+		}
+
+		return temp;
+	}
+
 	handleClick(value) {
 		
-		if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value) && this.state.inputLength < 10){
+		if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value) && (this.state.inputLength < 10 || this.state.nextNumberReady === true)){
 			if (this.state.nextNumberReady === true)
 			{
 				this.setState((state) => ({
@@ -64,7 +82,8 @@ class Calculator extends React.Component {
 			this.setState((state) => ({
 				nextNumberReady : true,
 				isFirstValueSet : true,
-				value1 : Number(state.input),
+				/*value1 : Number(state.input),*/
+				value1 : parseFloat(state.input),
 				operator : value
 			}));
 		}
@@ -90,14 +109,12 @@ class Calculator extends React.Component {
 				solution = this.state.value1 + value2;
 			}
 
-			/*if (countDigits(solution) > 10){
-				if (solution)
-			}*/
+			solution = this.limitDigits(solution);
 
 			this.setState((state) => ({
 				input : String(solution),
 				inputLength : state.input.length,
-				nextNumberReady : false,
+				nextNumberReady : true,
 				isFirstValueSet : false,
 			}));
 		}
@@ -116,10 +133,10 @@ class Calculator extends React.Component {
 					input : state.input + '.',
 				}));
 			}
-
 		}
 		else if (value === '+/-'){
-			let opposite = Number(this.state.input);
+			/*let opposite = Number(this.state.input);*/
+			let opposite = parseFloat(this.state.input);
 			/*opposite = -Math.abs(opposite);*/
 			opposite = opposite * -1;
 			this.setState((state) => ({
@@ -132,8 +149,6 @@ class Calculator extends React.Component {
 	render() {
 		return (
 			<div className="calculator">
-				<div className="row">
-				</div>
 				<div className="row">
 					<Display value={this.state.input}/>
 				</div>
@@ -172,4 +187,22 @@ class Calculator extends React.Component {
 	}
 }
 
-ReactDOM.render(<Calculator />, document.getElementById('root'));
+class App extends React.Component {
+	render() {
+		return (
+			<div>
+				<div className="description">
+					<h1>Web Calculator</h1>
+					<h3>A calculator made with ReactJS. Try it out!</h3>
+				</div>
+				<div>
+					<Calculator/>
+				</div>
+			</div>
+			
+			);
+	}
+}
+
+/*ReactDOM.render(<Calculator />, document.getElementById('root'));*/
+ReactDOM.render(<App />, document.getElementById('root'));
