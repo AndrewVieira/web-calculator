@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/web-calculator/static/css/main.ad5e9e18.chunk.css",
+    "main.js": "/web-calculator/static/js/main.048e6424.chunk.js",
+    "main.js.map": "/web-calculator/static/js/main.048e6424.chunk.js.map",
+    "runtime-main.js": "/web-calculator/static/js/runtime-main.f3373f00.js",
+    "runtime-main.js.map": "/web-calculator/static/js/runtime-main.f3373f00.js.map",
+    "static/js/2.2123e8fa.chunk.js": "/web-calculator/static/js/2.2123e8fa.chunk.js",
+    "static/js/2.2123e8fa.chunk.js.map": "/web-calculator/static/js/2.2123e8fa.chunk.js.map",
+    "index.html": "/web-calculator/index.html",
+    "precache-manifest.ab3b0c2b0e3645aff0807a1dcfe4167b.js": "/web-calculator/precache-manifest.ab3b0c2b0e3645aff0807a1dcfe4167b.js",
+    "service-worker.js": "/web-calculator/service-worker.js",
+    "static/css/main.ad5e9e18.chunk.css.map": "/web-calculator/static/css/main.ad5e9e18.chunk.css.map",
+    "static/js/2.2123e8fa.chunk.js.LICENSE": "/web-calculator/static/js/2.2123e8fa.chunk.js.LICENSE",
+    "static/media/index.css": "/web-calculator/static/media/vintage-wallpaper.78ee9c8a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f3373f00.js",
+    "static/js/2.2123e8fa.chunk.js",
+    "static/css/main.ad5e9e18.chunk.css",
+    "static/js/main.048e6424.chunk.js"
+  ]
+}
