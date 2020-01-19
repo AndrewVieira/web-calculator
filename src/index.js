@@ -25,7 +25,6 @@ class Calculator extends React.Component {
 			nextNumberReady : false,
 			isFirstValueSet : false,
 			operator : '+',
-			currentOperation: "",
 		}
 	}
 
